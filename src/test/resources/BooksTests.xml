@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="books tests">
+
+    <test name="Search book by incorrect title">
+        <parameter name="searchText" value="noBookFind"/>
+        <classes>
+            <class name="booksTest.UnsuccessBookFind"/>
+        </classes>
+    </test>
+
+    <test name="Search book by correct title" >
+        <parameter name="searchText" value="You Don't Know JS"/>
+        <classes>
+            <class name="booksTest.SuccessBookFind"/>
+        </classes>
+    </test>
+
+</suite>

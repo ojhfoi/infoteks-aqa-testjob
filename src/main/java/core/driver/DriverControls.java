@@ -1,21 +1,29 @@
 package core.driver;
 
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
 
+@Log4j2
 public class DriverControls {
 
-    private static WebDriver driver;
+    public static WebDriver driver;
 
-    public void tearUp(String browser ) {
-        driver = DriversCreator.valueOf(browser).create();
+    public void createNewDriver(String driverType) {
+        try {
+            driver = DriversCreator.valueOf(driverType).create();
+        } catch (Throwable throwable) {
+            log.error("Не удалось создать новый экземпляр драйвера");
+        }
     }
 
-    public void tearDown() {
-        driver.close();
-    }
-
-    public void navigate ( String url ) {
+    public void openSite( String url) {
         driver.navigate().to(url);
+    }
+
+    public void closeDriver() {
+        if (driver != null) {
+            driver.close();
+        }
     }
 
 }
